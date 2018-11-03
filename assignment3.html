@@ -1,0 +1,161 @@
+
+<html>
+	<head>
+		<title>sort</title>
+	</head>
+	<body onload="myFunction()">
+	<script>
+        
+        document.write("Choose type Sort image     ")
+	function myFunction()
+	{
+		var x = document.createElement("SELECT");
+		x.setAttribute("id", "mySelect");
+		document.body.appendChild(x);
+		
+		
+		
+		var z0 = document.createElement("option");
+		z0.setAttribute("value", "00");
+		var t0 = document.createTextNode("select sort type");
+		z0.appendChild(t0);
+		document.getElementById("mySelect").appendChild(z0);
+		
+
+		var z = document.createElement("option");
+		z.setAttribute("value", "0");
+		var t = document.createTextNode("By Name");
+		z.appendChild(t);
+		document.getElementById("mySelect").appendChild(z);
+		
+		var z2 = document.createElement("option");
+		z2.setAttribute("value", "1");
+		var t2 = document.createTextNode("By Like");
+		z2.appendChild(t2);
+		document.getElementById("mySelect").appendChild(z2);
+		
+		var z3 = document.createElement("option");
+		z3.setAttribute("value", "2");
+		var t3 = document.createTextNode("By Date");
+		z3.appendChild(t3);
+		document.getElementById("mySelect").appendChild(z3);
+		
+		 var y = document.createElement("INPUT");
+		 y.setAttribute("type", "submit");
+		 y.setAttribute("onclick", "display()");
+		document.body.appendChild(y);
+	}
+	
+	
+	
+		function display()
+	{
+	
+		var arrayOfObjects = [   
+				{
+					name: "Cute cat",
+					likes: 20,
+					dateUploaded: "23/18/2018",
+					src: "images/c1.jpg"
+				},
+				{
+
+					name: "orange cat",
+					likes: 15,
+					dateUploaded: "15/18/2018",
+					src: "images/c2.jpg"
+				},
+				{            
+					name: "xl cat",
+					likes: 18,
+					dateUploaded: "10/18/2018",
+					src: "images/c3.jpg"
+				},    
+				{
+					name: "black cat",
+					likes: 8,
+					dateUploaded: "1/18/2018",
+					src: "images/c4.jpg"
+				}
+			];
+			// sort by likes
+			// use slice() to copy the array and not just make a reference
+			var byLike = arrayOfObjects.slice(0);
+			byLike.sort(function(a,b) {
+				return b.likes - a.likes;
+			});
+			console.log('by like:');
+			console.log(byLike);
+
+			// sort by Date
+			// use slice() to copy the array and not just make a reference
+			var byDate = arrayOfObjects.slice(0);
+			byDate.sort(function(a,b) {
+				return a.dateUploaded - b.dateUploaded;
+			});
+			console.log('by Date:');
+			console.log(byDate);
+
+			// sort by name
+			var byName = arrayOfObjects.slice(0);
+			byName.sort(function(a,b) {
+				var x = a.name.toLowerCase();
+				var y = b.name.toLowerCase();
+				return x < y ? -1 : x > y ? 1 : 0;
+			});
+
+			console.log('by name:');
+			console.log(byName[0].src);
+			
+			
+			
+			
+	
+		 var x = document.createElement("UL");
+		x.setAttribute("id", "myUL");
+		document.body.appendChild(x);
+		
+		
+		var sel = document.getElementById('mySelect').value;
+		
+		if(sel==0)
+		{
+			
+				for(var i=0;i<=3;i++){
+					var y = document.createElement("LI");
+					var img = document.createElement("IMG");
+					var d=byName[i].src;
+						img.setAttribute("src", ""+d);
+					y.appendChild(img);
+					document.getElementById("myUL").appendChild(y);
+				}
+		}
+		else if(sel==1){
+			for(var i=0;i<=3;i++){
+					var y = document.createElement("LI");
+					var img = document.createElement("IMG");
+					var d=byLike[i].src;
+						img.setAttribute("src", ""+d);
+					y.appendChild(img);
+					document.getElementById("myUL").appendChild(y);
+				}
+		}
+		else if(sel==2){
+			for(var i=0;i<=3;i++){
+					var y = document.createElement("LI");
+					var img = document.createElement("IMG");
+					var d=byDate[i].src;
+						img.setAttribute("src", ""+d);
+					y.appendChild(img);
+					document.getElementById("myUL").appendChild(y);
+				}
+		}
+		
+	}
+	
+		</script>	
+	</body>
+</html>
+
+
+
