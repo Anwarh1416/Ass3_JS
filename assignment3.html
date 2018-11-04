@@ -21,7 +21,6 @@
 		z0.appendChild(t0);
 		document.getElementById("mySelect").appendChild(z0);
 		
-
 		var z = document.createElement("option");
 		z.setAttribute("value", "0");
 		var t = document.createTextNode("By Name");
@@ -55,26 +54,25 @@
 				{
 					name: "Cute cat",
 					likes: 20,
-					dateUploaded: "23/18/2018",
+					date: "Mar 9 2011 10:00:00 AM",
 					src: "images/c1.jpg"
 				},
 				{
-
 					name: "orange cat",
 					likes: 15,
-					dateUploaded: "15/18/2018",
+					date: "Mar 5 2014 10:00:00 AM",
 					src: "images/c2.jpg"
 				},
 				{            
 					name: "xl cat",
 					likes: 18,
-					dateUploaded: "10/18/2018",
+					date: "Mar 3 2012 10:00:00 AM",
 					src: "images/c3.jpg"
 				},    
 				{
 					name: "black cat",
 					likes: 8,
-					dateUploaded: "1/18/2018",
+					date: "Mar 4 2009 10:00:00 AM",
 					src: "images/c4.jpg"
 				}
 			];
@@ -86,16 +84,17 @@
 			});
 			console.log('by like:');
 			console.log(byLike);
-
 			// sort by Date
 			// use slice() to copy the array and not just make a reference
 			var byDate = arrayOfObjects.slice(0);
-			byDate.sort(function(a,b) {
-				return a.dateUploaded - b.dateUploaded;
-			});
+        byDate.sort(sortFunction);
+        function sortFunction(a,b){  
+    var dateA = new Date(a.date).getTime();
+    var dateB = new Date(b.date).getTime();
+    return dateA < dateB ? 1 : -1;  
+}; 
 			console.log('by Date:');
 			console.log(byDate);
-
 			// sort by name
 			var byName = arrayOfObjects.slice(0);
 			byName.sort(function(a,b) {
@@ -103,7 +102,6 @@
 				var y = b.name.toLowerCase();
 				return x < y ? -1 : x > y ? 1 : 0;
 			});
-
 			console.log('by name:');
 			console.log(byName[0].src);
 			
@@ -156,6 +154,3 @@
 		</script>	
 	</body>
 </html>
-
-
-
